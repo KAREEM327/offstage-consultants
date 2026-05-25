@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offstage Consultants — Productized Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A0E1A;
+    --navy-mid: #0F1628;
+    --navy-light: #151d35;
+    --cyan: #00D4FF;
+    --magenta: #CC44DD;
+    --teal: #00E5CC;
+    --white: #F0F4FF;
+    --muted: #6B7A9F;
+    --card-bg: rgba(15, 22, 40, 0.85);
+    --border: rgba(0, 212, 255, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.22;
+  }
+  .glow-orb.one { width: 600px; height: 600px; background: var(--cyan); top: -200px; left: -200px; animation: drift1 18s ease-in-out infinite; }
+  .glow-orb.two { width: 500px; height: 500px; background: var(--magenta); bottom: 10%; right: -150px; animation: drift2 22s ease-in-out infinite; }
+  .glow-orb.three { width: 400px; height: 400px; background: var(--teal); top: 40%; left: 40%; animation: drift3 16s ease-in-out infinite; }
+
+  @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(80px, 60px); } }
+  @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-60px, -80px); } }
+  @keyframes drift3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(40px, -50px); } }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--cyan); }
+  .nav-cta {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cyan);
+    padding: 10px 22px;
+    text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--teal); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 32px 80px;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan));
+  }
+  .hero-eyebrow::after { background: linear-gradient(90deg, var(--cyan), transparent); }
+
+  .hero-wordmark {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.1s forwards;
+    color: var(--white);
+  }
+  .hero-wordmark .accent-cyan { color: var(--cyan); }
+
+  .hero-sub-wordmark {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(10px, 1.5vw, 14px);
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.25s forwards;
+  }
+
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+  .hero-headline .accent-cyan { color: var(--cyan); }
+  .hero-headline .accent-mag { color: var(--magenta); }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: #8899BB;
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .promo-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(204,68,221,0.15), rgba(0,229,204,0.1));
+    border: 1px solid rgba(204,68,221,0.4);
+    padding: 14px 28px;
+    margin-bottom: 60px;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+  .promo-icon { font-size: 18px; }
+  .promo-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .promo-text strong { color: var(--magenta); }
+  .promo-text span { color: var(--teal); }
+
+  /* SECTIONS */
+  .section {
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .section-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label.mag { color: var(--magenta); }
+  .section-label.teal { color: var(--teal); }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
+    max-width: 200px;
+    opacity: 0.4;
+  }
+  .section-label.mag::after { background: linear-gradient(90deg, var(--magenta), transparent); }
+  .section-label.teal::after { background: linear-gradient(90deg, var(--teal), transparent); }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 16px;
+    color: #7080A0;
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 56px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), var(--teal), transparent);
+    opacity: 0.25;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CARDS */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .module-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    display: flex;
+    flex-direction: column;
+  }
+  .module-card:hover { transform: translateY(-4px); }
+
+  .module-card.cyan-card { border-color: rgba(0,212,255,0.2); }
+  .module-card.cyan-card:hover { border-color: rgba(0,212,255,0.5); box-shadow: 0 20px 60px rgba(0,212,255,0.12), inset 0 1px 0 rgba(0,212,255,0.1); }
+  .module-card.magenta-card { border-color: rgba(204,68,221,0.2); }
+  .module-card.magenta-card:hover { border-color: rgba(204,68,221,0.5); box-shadow: 0 20px 60px rgba(204,68,221,0.12), inset 0 1px 0 rgba(204,68,221,0.1); }
+  .module-card.teal-card { border-color: rgba(0,229,204,0.2); }
+  .module-card.teal-card:hover { border-color: rgba(0,229,204,0.5); box-shadow: 0 20px 60px rgba(0,229,204,0.12), inset 0 1px 0 rgba(0,229,204,0.1); }
+
+  .card-accent-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .cyan-card .card-accent-line { background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+  .magenta-card .card-accent-line { background: linear-gradient(90deg, transparent, var(--magenta), transparent); }
+  .teal-card .card-accent-line { background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+
+  .card-module-tag {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding: 5px 12px;
+    display: inline-block;
+  }
+  .cyan-card .card-module-tag { color: var(--cyan); background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); }
+  .magenta-card .card-module-tag { color: var(--magenta); background: rgba(204,68,221,0.08); border: 1px solid rgba(204,68,221,0.2); }
+  .teal-card .card-module-tag { color: var(--teal); background: rgba(0,229,204,0.08); border: 1px solid rgba(0,229,204,0.2); }
+
+  .card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .card-tagline {
+    font-size: 13px;
+    color: #6B7A9F;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .price-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-block { flex: 1; }
+  .price-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .price-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .cyan-card .price-value { color: var(--cyan); }
+  .magenta-card .price-value { color: var(--magenta); }
+  .teal-card .price-value { color: var(--teal); }
+  .price-unit {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 2px;
+  }
+
+  .card-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .card-features li {
+    font-size: 13px;
+    color: #8899BB;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.45;
+  }
+  .card-features li::before {
+    content: '→';
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .cyan-card .card-features li::before { color: var(--cyan); }
+  .magenta-card .card-features li::before { color: var(--magenta); }
+  .teal-card .card-features li::before { color: var(--teal); }
+
+  .card-timeline {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .card-cta {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 20px;
+    text-align: center;
+    transition: all 0.2s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .cyan-card .card-cta { color: var(--navy); background: var(--cyan); }
+  .cyan-card .card-cta:hover { background: #33DDFF; transform: translateY(-1px); }
+  .magenta-card .card-cta { color: var(--white); background: var(--magenta); }
+  .magenta-card .card-cta:hover { background: #DD66EE; transform: translateY(-1px); }
+  .teal-card .card-cta { color: var(--navy); background: var(--teal); }
+  .teal-card .card-cta:hover { background: #33EED9; transform: translateY(-1px); }
+
+  /* COMPARE TABLE */
+  .compare-table-wrap {
+    overflow-x: auto;
+    margin-top: 48px;
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .compare-table thead tr {
+    background: rgba(0,212,255,0.06);
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+  }
+  .compare-table th {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    padding: 16px 20px;
+    text-align: left;
+  }
+  .compare-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #8899BB;
+  }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .highlight-val { color: var(--cyan) !important; font-weight: 600; }
+  .highlight-mag { color: var(--magenta) !important; font-weight: 600; }
+  .highlight-teal { color: var(--teal) !important; font-weight: 600; }
+
+  /* TIER BADGE */
+  .tier-row td {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background: rgba(0,212,255,0.04);
+  }
+  .tier-row.mag td { background: rgba(204,68,221,0.04); color: var(--magenta) !important; }
+  .tier-row.teal td { background: rgba(0,229,204,0.04); color: var(--teal) !important; }
+
+  /* CTA */
+  .cta-section {
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-inner {
+    background: linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(15,22,40,0.9) 50%, rgba(204,68,221,0.05) 100%);
+    border: 1px solid rgba(0,212,255,0.2);
+    padding: 80px 60px;
+    text-align: center;
+    clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+  }
+  .cta-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+  .cta-sub {
+    font-size: 16px;
+    color: #7080A0;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.65;
+  }
+  .cta-btn-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--navy);
+    background: var(--cyan);
+    padding: 16px 36px;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); }
+  .btn-secondary {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--cyan);
+    background: transparent;
+    border: 1px solid rgba(0,212,255,0.35);
+    padding: 16px 36px;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--cyan); background: rgba(0,212,255,0.06); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--cyan); }
+  .footer-links {
+    display: flex;
+    gap: 28px;
+  }
+  .footer-links a {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cyan); }
+  .footer-copy {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .container { padding: 0 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .section { padding: 70px 0; }
+    .modules-grid { grid-template-columns: 1fr; }
+    .cta-inner { padding: 50px 28px; clip-path: none; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+    .price-row { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-orb one"></div>
+<div class="glow-orb two"></div>
+<div class="glow-orb three"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Offstage <span>Consultants</span></div>
+  <a href="https://offstageaiintake.netlify.app/" class="nav-cta">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-wordmark">Offstage <span class="accent-cyan">Consultants</span></div>
+  <div class="hero-sub-wordmark">Business &amp; Personal Solutions</div>
+  <div class="hero-eyebrow">Productized Services</div>
+  <h1 class="hero-headline">
+    Fixed scope. Built for you.<br>
+    <span class="accent-cyan">Delivered.</span>
+  </h1>
+  <p class="hero-sub">Done-for-you solutions for businesses that want results, not conversations. Clear scope, clear price, clear timeline — every time.</p>
+  <div class="promo-banner">
+    <span class="promo-icon">⚡</span>
+    <div class="promo-text">
+      <strong>Every service</strong> <span>includes a monthly maintenance retainer</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ENTRY TIER -->
+<section class="section" id="entry">
+  <div class="container">
+    <div class="section-label">Entry Tier</div>
+    <h2 class="section-title fade-in">Start Here</h2>
+    <p class="section-desc fade-in">Fast, clear deliverables. Fixed scope, fast turnaround. The right starting point before scaling into deeper systems.</p>
+    <div class="modules-grid">
+
+      <!-- Landing Page -->
+      <div class="module-card cyan-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Landing Page</div>
+        <div class="card-name">High-Converting Landing Page</div>
+        <div class="card-tagline">A professionally built page, copy written for you, designed to convert. Not a template — a real build.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$900<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$20<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Strategy call (45 min)</li>
+          <li>Copy written for you</li>
+          <li>Design + build, mobile-optimized</li>
+          <li>Deployed to your domain</li>
+          <li>1 revision round included</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 5 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- Website -->
+      <div class="module-card cyan-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Website Build</div>
+        <div class="card-name">Full Business Website</div>
+        <div class="card-tagline">Up to 5 pages, copy included. Built to represent your brand and convert visitors into clients.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$2,300<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$50<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Strategy call</li>
+          <li>Copy written for all pages</li>
+          <li>Design + build, up to 5 pages</li>
+          <li>Mobile-optimized, deployed to domain</li>
+          <li>1 revision round included</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 12 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- Voice Receptionist -->
+      <div class="module-card cyan-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Voice Receptionist</div>
+        <div class="card-name">24/7 AI Call Handling</div>
+        <div class="card-tagline">Answers every call, qualifies callers, books appointments — in your brand voice, around the clock. Never miss a lead.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$800<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$150<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Discovery call + call flow design</li>
+          <li>AI voice selection + configuration</li>
+          <li>FAQ training (up to 20 questions)</li>
+          <li>Phone number setup + test calls</li>
+          <li>Handoff documentation</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 7 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- n8n Automation Build -->
+      <div class="module-card cyan-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Automation Build</div>
+        <div class="card-name">Business Process Automation</div>
+        <div class="card-tagline">Map your most repetitive processes and automate them. Up to 3 workflows — built, tested, and handed off.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$1,200<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$250<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Process mapping session (1 hr)</li>
+          <li>Up to 3 automated workflows built + tested</li>
+          <li>Connected to your existing tools</li>
+          <li>Walkthrough + handoff documentation</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 7 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- AI Content Engine -->
+      <div class="module-card cyan-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Content Engine</div>
+        <div class="card-name">AI Content Pipeline</div>
+        <div class="card-tagline">Brand voice captured. Content drafted and scheduled. One channel or all of them — you review, the machine does the rest.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$1,200<span class="price-unit">–$2,500</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$25<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Brand voice document built</li>
+          <li>Content pipeline setup + 30-day map</li>
+          <li>Buffer / Taplio configured</li>
+          <li>Single channel: $1,200 · Full engine: $2,500</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 10 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MID TIER -->
+<section class="section" id="mid">
+  <div class="container">
+    <div class="section-label mag">Mid Tier</div>
+    <h2 class="section-title fade-in">Full Systems</h2>
+    <p class="section-desc fade-in">Multi-component builds that solve a specific operational problem end-to-end. More moving parts, bigger impact.</p>
+    <div class="modules-grid">
+
+      <!-- AI Growth Engine -->
+      <div class="module-card magenta-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Growth Engine</div>
+        <div class="card-name">Automated Lead Generation</div>
+        <div class="card-tagline">Find your ideal clients, enrich their data, send personalized outreach. You get responses in your inbox — not a tool to manage.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$1,800<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$50<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>ICP definition session</li>
+          <li>500 enriched leads (Apollo + Clay)</li>
+          <li>3-email personalized sequence written</li>
+          <li>Instantly campaign configured + launched</li>
+          <li>30-day monitoring included</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 12 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- AI Customer Communications -->
+      <div class="module-card magenta-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Customer Comms</div>
+        <div class="card-name">AI Customer Communications</div>
+        <div class="card-tagline">AI trained on your business handles inquiries 24/7 across Intercom, WhatsApp, and SMS. Resolves without you. Escalates when needed.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$2,400<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$250<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Intercom AI agent trained (up to 30 docs/FAQs)</li>
+          <li>WhatsApp or SMS bot via Twilio</li>
+          <li>Review monitoring across 2 platforms</li>
+          <li>AI response templates in your brand voice</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 14 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- AI Knowledge System -->
+      <div class="module-card magenta-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Knowledge System</div>
+        <div class="card-name">AI Company Brain</div>
+        <div class="card-tagline">Every SOP, document, and piece of institutional knowledge your business has — loaded into a queryable AI your whole team can use.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$1,700<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$200<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Ingestion of up to 50 docs / SOPs</li>
+          <li>Supabase + Pinecone vector search setup</li>
+          <li>Claude-powered query interface</li>
+          <li>Onboarding use case configured</li>
+          <li>Team walkthrough included</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 14 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- Client Reporting Autopilot -->
+      <div class="module-card magenta-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Reporting Autopilot</div>
+        <div class="card-name">Automated Client Reporting</div>
+        <div class="card-tagline">Data pulled automatically, report written by AI, delivered on schedule. Never manually build a client deck again.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$1,200<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$200<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Integration with up to 3 data sources</li>
+          <li>Branded report template built</li>
+          <li>AI narrative layer configured</li>
+          <li>Automated delivery schedule set</li>
+          <li>First live report delivered</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 10 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- AI Hiring Pipeline -->
+      <div class="module-card magenta-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Hiring Pipeline</div>
+        <div class="card-name">AI-Powered Hiring System</div>
+        <div class="card-tagline">Define your ideal candidate — the AI screens applicants, scores them, and surfaces only the ones worth your time. Cuts hiring time in half.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$1,900<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$299<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Ideal candidate profile built</li>
+          <li>Application screening automation</li>
+          <li>AI scoring rubric configured</li>
+          <li>Custom interview questions per candidate</li>
+          <li>ClickUp / Notion pipeline configured</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 7 business days</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PREMIUM TIER -->
+<section class="section" id="premium">
+  <div class="container">
+    <div class="section-label teal">Premium Tier</div>
+    <h2 class="section-title fade-in">High-Value Builds</h2>
+    <p class="section-desc fade-in">Strategic, high-touch systems that change how you operate. These are ongoing intelligence engines — not one-time deliverables.</p>
+    <div class="modules-grid">
+
+      <!-- Personal AI Concierge -->
+      <div class="module-card teal-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">AI Concierge</div>
+        <div class="card-name">Personal AI Concierge</div>
+        <div class="card-tagline">A private AI dashboard that runs your day. Morning briefing, client intelligence, research on demand. Like hiring a chief of staff who works at 3 AM.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$900<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$100<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Custom-branded dashboard deployed</li>
+          <li>Up to 3 live integrations (Calendar, Gmail, Notion, Slack)</li>
+          <li>Daily AI brief configured</li>
+          <li>Concierge chat + research desk live</li>
+          <li>Full onboarding session</li>
+        </ul>
+        <div class="card-timeline">⏱ Delivery: 3 weeks</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- AI Strategic Intelligence -->
+      <div class="module-card teal-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Strategic Intelligence</div>
+        <div class="card-name">Competitive &amp; Strategic Intelligence</div>
+        <div class="card-tagline">Weekly competitive monitoring + monthly AI board briefing. Stop being the last to know what your market is doing.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$700<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$299<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>3 competitor profiles monitored</li>
+          <li>Weekly intelligence digest (Slack or email)</li>
+          <li>Monthly AI board briefing — narrative format</li>
+          <li>Quarterly strategy review</li>
+        </ul>
+        <div class="card-timeline">⏱ Setup: 7 days · First brief: end of week 1</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+      <!-- AI Financial Brief -->
+      <div class="module-card teal-card fade-in">
+        <div class="card-accent-line"></div>
+        <div class="card-module-tag">Financial Brief</div>
+        <div class="card-name">AI Financial Brief</div>
+        <div class="card-tagline">Monthly plain-English CFO-style report on your business finances. Revenue, margins, anomalies, cash flow risks — no spreadsheets.</div>
+        <div class="price-row">
+          <div class="price-block">
+            <div class="price-label">Setup Fee</div>
+            <div class="price-value">$500<span class="price-unit"> one-time</span></div>
+          </div>
+          <div class="price-block">
+            <div class="price-label">Monthly</div>
+            <div class="price-value">$200<span class="price-unit">/mo</span></div>
+          </div>
+        </div>
+        <ul class="card-features">
+          <li>Stripe + Xero integration</li>
+          <li>Monthly P&amp;L narrative in plain English</li>
+          <li>Anomaly + cash flow risk flagging</li>
+          <li>Delivered 1st of each month</li>
+        </ul>
+        <div class="card-timeline">⏱ Setup: 5 days · First brief: end of first full month</div>
+        <a href="https://offstageaiintake.netlify.app/" class="card-cta">Book a Discovery Call →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPARISON TABLE -->
+<section class="section" id="compare">
+  <div class="container">
+    <div class="section-label">Quick Reference</div>
+    <h2 class="section-title fade-in">All Pricing at a Glance</h2>
+    <div class="compare-table-wrap fade-in">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Setup Fee</th>
+            <th>Monthly Retainer</th>
+            <th>Turnaround</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tier-row"><td colspan="4">— Entry Tier —</td></tr>
+          <tr>
+            <td>Landing Page</td>
+            <td class="highlight-val">$900</td>
+            <td class="highlight-val">$20/mo</td>
+            <td>5 business days</td>
+          </tr>
+          <tr>
+            <td>Website (up to 5 pages)</td>
+            <td class="highlight-val">$2,300</td>
+            <td class="highlight-val">$50/mo</td>
+            <td>12 business days</td>
+          </tr>
+          <tr>
+            <td>Voice Receptionist</td>
+            <td class="highlight-val">$800</td>
+            <td class="highlight-val">$150/mo</td>
+            <td>7 business days</td>
+          </tr>
+          <tr>
+            <td>n8n Automation Build</td>
+            <td class="highlight-val">$1,200</td>
+            <td class="highlight-val">$250/mo</td>
+            <td>7 business days</td>
+          </tr>
+          <tr>
+            <td>AI Content Engine</td>
+            <td class="highlight-val">$1,200–$2,500</td>
+            <td class="highlight-val">$25/mo</td>
+            <td>10 business days</td>
+          </tr>
+          <tr class="tier-row mag"><td colspan="4">— Mid Tier —</td></tr>
+          <tr>
+            <td>AI Growth Engine</td>
+            <td class="highlight-mag">$1,800</td>
+            <td class="highlight-mag">$50/mo</td>
+            <td>12 business days</td>
+          </tr>
+          <tr>
+            <td>AI Customer Communications</td>
+            <td class="highlight-mag">$2,400</td>
+            <td class="highlight-mag">$250/mo</td>
+            <td>14 business days</td>
+          </tr>
+          <tr>
+            <td>AI Knowledge System</td>
+            <td class="highlight-mag">$1,700</td>
+            <td class="highlight-mag">$200/mo</td>
+            <td>14 business days</td>
+          </tr>
+          <tr>
+            <td>Client Reporting Autopilot</td>
+            <td class="highlight-mag">$1,200</td>
+            <td class="highlight-mag">$200/mo</td>
+            <td>10 business days</td>
+          </tr>
+          <tr>
+            <td>AI Hiring Pipeline</td>
+            <td class="highlight-mag">$1,900</td>
+            <td class="highlight-mag">$299/mo</td>
+            <td>7 business days</td>
+          </tr>
+          <tr class="tier-row teal"><td colspan="4">— Premium Tier —</td></tr>
+          <tr>
+            <td>Personal AI Concierge</td>
+            <td class="highlight-teal">$900</td>
+            <td class="highlight-teal">$100/mo</td>
+            <td>3 weeks</td>
+          </tr>
+          <tr>
+            <td>AI Strategic Intelligence</td>
+            <td class="highlight-teal">$700</td>
+            <td class="highlight-teal">$299/mo</td>
+            <td>7 business days</td>
+          </tr>
+          <tr>
+            <td>AI Financial Brief</td>
+            <td class="highlight-teal">$500</td>
+            <td class="highlight-teal">$200/mo</td>
+            <td>5 business days</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner fade-in">
+      <div class="hero-eyebrow" style="justify-content:center; opacity:1; animation:none; margin-bottom:20px;">Get Started</div>
+      <h2 class="cta-headline">Ready to build<br>something that works?</h2>
+      <p class="cta-sub">30-minute discovery call. We'll map the right service for your situation, confirm scope, and get moving.</p>
+      <div class="cta-btn-group">
+        <a href="https://offstageaiintake.netlify.app/" class="btn-primary">Book a Discovery Call</a>
+        <a href="mailto:kundalini327@gmail.com" class="btn-secondary">Send a Message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Offstage <span>Consultants</span></div>
+      <div class="footer-links">
+        <a href="https://offstageaiintake.netlify.app/">Book a Call</a>
+        <a href="mailto:kundalini327@gmail.com">Contact</a>
+      </div>
+      <div class="footer-copy">kundalini327@gmail.com</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
