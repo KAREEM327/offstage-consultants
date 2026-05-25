@@ -631,6 +631,92 @@
     .price-row { flex-direction: column; gap: 16px; }
   }
 
+
+  /* ABOUT */
+  .about-section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .about-top {
+    max-width: 760px;
+    margin: 0 auto 64px;
+    text-align: center;
+  }
+  .about-eyebrow {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .about-eyebrow::before, .about-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan));
+  }
+  .about-eyebrow::after { background: linear-gradient(90deg, var(--cyan), transparent); }
+  .about-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+  .about-headline .accent { color: var(--cyan); }
+  .about-desc {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .about-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .pillar {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .pillar:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+  .pillar-icon {
+    font-size: 28px;
+    margin-bottom: 18px;
+    display: block;
+  }
+  .pillar-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .pillar-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .pillar-body strong { color: var(--white); font-weight: 600; }
+  @media (max-width: 768px) {
+    .about-pillars { grid-template-columns: 1fr; }
+  }
+
   /* FREE AUDIT */
   .audit-section {
     padding: 80px 0;
@@ -808,6 +894,7 @@
 <nav>
   <div class="nav-logo">Offstage <span>Consultants</span></div>
   <div class="nav-links">
+    <a href="#about" class="nav-link">About</a>
     <a href="#services" class="nav-link">Services</a>
     <a href="#audit" class="nav-link">Free Audit</a>
     <a href="#consulting" class="nav-link">Consulting</a>
@@ -835,6 +922,36 @@
 
 <div class="divider"></div>
 
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-top fade-in">
+      <div class="about-eyebrow">Who We Are</div>
+      <h2 class="about-headline">We build the systems<br>your business <span class="accent">runs on.</span></h2>
+      <p class="about-desc">Offstage Consultants is a business and personal consulting firm that designs, builds, and deploys done-for-you technology, automation, and AI systems. We work with entrepreneurs, service providers, and growing teams who need things built right — quickly, cleanly, and without requiring you to become a technical expert in the process.<br><br>The name says everything: the best systems work offstage. Behind the scenes, invisible to your clients, and completely out of your way. You focus on delivering your work. We build everything that makes that possible.</p>
+    </div>
+    <div class="about-pillars">
+      <div class="pillar fade-in">
+        <span class="pillar-icon">⚡</span>
+        <div class="pillar-title">Done For You</div>
+        <p class="pillar-body">We scope it, build it, test it, and hand it off. You get <strong>a working system</strong> — not a course on how to build one yourself. No DIY, no hand-holding required from your end.</p>
+      </div>
+      <div class="pillar fade-in">
+        <span class="pillar-icon">🎯</span>
+        <div class="pillar-title">Fixed Scope. Fixed Price.</div>
+        <p class="pillar-body">Every engagement has a <strong>clear deliverable and a clear price</strong> before we start. No open-ended retainers. No scope creep. No surprises. You know exactly what you're getting and when you're getting it.</p>
+      </div>
+      <div class="pillar fade-in">
+        <span class="pillar-icon">🔄</span>
+        <div class="pillar-title">Built to Run Without You</div>
+        <p class="pillar-body">Every system we build is designed to <strong>operate independently</strong>. It should run whether you're in a meeting, on vacation, or asleep. You shouldn't need to babysit what we build — and you won't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- FREE AUDIT -->
 <section class="audit-section" id="audit">
