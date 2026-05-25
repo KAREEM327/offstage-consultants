@@ -104,6 +104,24 @@
   }
   .nav-cta:hover { background: var(--teal); transform: translateY(-1px); }
 
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--cyan); }
+  @media (max-width: 640px) { .nav-links { display: none; } }
+
   /* HERO */
   .hero {
     position: relative;
@@ -612,6 +630,172 @@
     .footer-links { justify-content: center; }
     .price-row { flex-direction: column; gap: 16px; }
   }
+
+  /* FREE AUDIT */
+  .audit-section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .audit-inner {
+    background: linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(0,229,204,0.04) 100%);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 20px;
+    padding: 64px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .audit-eyebrow {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+  .audit-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .audit-headline .accent { color: var(--teal); }
+  .audit-desc {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .audit-btn {
+    display: inline-block;
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--teal);
+    padding: 14px 32px;
+    text-decoration: none;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .audit-btn:hover { background: var(--cyan); transform: translateY(-2px); }
+  .audit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .audit-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.5;
+  }
+  .audit-list li .check {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    border-radius: 50%;
+    background: rgba(0,229,204,0.12);
+    border: 1px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--teal);
+    margin-top: 1px;
+  }
+  .audit-list li .check-label { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  @media (max-width: 768px) {
+    .audit-inner { grid-template-columns: 1fr; padding: 40px 28px; gap: 36px; }
+  }
+
+  /* CONSULTING */
+  .consulting-section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .consulting-inner {
+    background: linear-gradient(135deg, rgba(204,68,221,0.06) 0%, rgba(0,212,255,0.03) 100%);
+    border: 1px solid rgba(204,68,221,0.2);
+    border-radius: 20px;
+    padding: 64px 60px;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .consulting-eyebrow {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 16px;
+  }
+  .consulting-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .consulting-headline .accent { color: var(--magenta); }
+  .consulting-desc {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+  .consulting-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .consulting-tag {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    border: 1px solid rgba(204,68,221,0.3);
+    background: rgba(204,68,221,0.07);
+    padding: 7px 16px;
+    border-radius: 100px;
+  }
+  .consulting-btn {
+    display: inline-block;
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--magenta);
+    padding: 14px 36px;
+    text-decoration: none;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .consulting-btn:hover { background: var(--magenta); color: var(--navy); transform: translateY(-2px); }
+  @media (max-width: 768px) { .consulting-inner { padding: 40px 28px; } }
+
 </style>
 </head>
 <body>
@@ -623,6 +807,11 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Offstage <span>Consultants</span></div>
+  <div class="nav-links">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#audit" class="nav-link">Free Audit</a>
+    <a href="#consulting" class="nav-link">Consulting</a>
+  </div>
   <a href="https://offstageaiintake.netlify.app/" class="nav-cta">Book a Call</a>
 </nav>
 
@@ -646,8 +835,55 @@
 
 <div class="divider"></div>
 
+
+<!-- FREE AUDIT -->
+<section class="audit-section" id="audit">
+  <div class="container">
+    <div class="audit-inner fade-in">
+      <div>
+        <div class="audit-eyebrow">No Cost. No Obligation.</div>
+        <h2 class="audit-headline">Not sure where<br>to start? Get a<br><span class="accent">Free Audit.</span></h2>
+        <p class="audit-desc">We'll review your current setup, identify your biggest bottleneck, and tell you exactly what to build first — in plain English, not a sales pitch.</p>
+        <a href="https://offstageaiintake.netlify.app/" class="audit-btn">Claim Your Free Audit →</a>
+      </div>
+      <ul class="audit-list">
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>30-minute strategy call</div>
+            <div class="check-label">Walk us through your business, tools, and where things break down</div>
+          </div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>Current ops review</div>
+            <div class="check-label">We map what's working, what's leaking, and what's missing entirely</div>
+          </div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>Clear recommendation</div>
+            <div class="check-label">You'll leave knowing exactly what to build first and why</div>
+          </div>
+        </li>
+        <li>
+          <span class="check">✓</span>
+          <div>
+            <div>No pressure, no pitch</div>
+            <div class="check-label">If we're not the right fit, we'll tell you — and point you in the right direction anyway</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ENTRY TIER -->
-<section class="section" id="entry">
+<section class="section" id="services">
   <div class="container">
     <div class="section-label">Entry Tier</div>
     <h2 class="section-title fade-in">Start Here</h2>
@@ -1133,6 +1369,29 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- CONSULTING -->
+<section class="consulting-section" id="consulting">
+  <div class="container">
+    <div class="consulting-inner fade-in">
+      <div class="consulting-eyebrow">Beyond the Catalog</div>
+      <h2 class="consulting-headline">Need something<br>built <span class="accent">to spec?</span></h2>
+      <p class="consulting-desc">Not every problem fits a package. If your situation is complex, multi-system, or genuinely custom — we do that too. Bespoke consulting engagements, scoped around your business specifically.</p>
+      <div class="consulting-tags">
+        <span class="consulting-tag">Business Strategy</span>
+        <span class="consulting-tag">AI Implementation</span>
+        <span class="consulting-tag">Systems Design</span>
+        <span class="consulting-tag">Operations Overhaul</span>
+        <span class="consulting-tag">Custom Builds</span>
+        <span class="consulting-tag">Team Training</span>
+      </div>
+      <a href="https://offstageaiintake.netlify.app/" class="consulting-btn">Let's Talk →</a>
     </div>
   </div>
 </section>
