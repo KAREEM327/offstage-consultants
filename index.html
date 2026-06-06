@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Offstage AI — Intelligent Workforce, Unseen</title>
+<title>Offstage Consultants — Business &amp; AI Systems</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
 <!-- OG / Social sharing -->
-<meta name="description" content="The consulting brand behind the builds. Offstage AI helps small businesses and founders implement AI that actually works — custom tools, operational systems, and the strategy to make it all stick.">
-<meta property="og:title" content="Offstage AI — Intelligent Workforce, Unseen">
-<meta property="og:description" content="The consulting brand behind the builds. Offstage AI helps small businesses and founders implement AI that actually works — custom tools, operational systems, and the strategy to make it all stick.">
+<meta name="description" content="Business consulting with AI as the engine. We design, build, and deploy the systems your business runs on — so you can focus on what you do best.">
+<meta property="og:title" content="Offstage Consultants — Ready today for a better business tomorrow.">
+<meta property="og:description" content="Business consulting with AI as the engine. We design, build, and deploy the systems your business runs on.">
 <meta property="og:url" content="https://offstageai.com">
-<meta property="og:site_name" content="Offstage AI">
+<meta property="og:site_name" content="Offstage Consultants">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://offstageai.com/og-image.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Offstage AI — Intelligent Workforce, Unseen">
-<meta name="twitter:description" content="The consulting brand behind the builds. Offstage AI helps small businesses and founders implement AI that actually works.">
+<meta name="twitter:title" content="Offstage Consultants — Ready today for a better business tomorrow.">
+<meta name="twitter:description" content="Business consulting with AI as the engine. We design, build, and deploy the systems your business runs on.">
 <meta name="twitter:image" content="https://offstageai.com/og-image.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -739,6 +739,70 @@
     .about-pillars { grid-template-columns: 1fr; }
   }
 
+  /* FIVE OUTCOMES */
+  .outcomes-section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .outcomes-top {
+    max-width: 640px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .outcome-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.6;
+  }
+  .outcome-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+  .outcome-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    opacity: 0.7;
+  }
+  .outcome-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .outcome-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .outcomes-grid { grid-template-columns: 1fr; }
+  }
+
   /* FREE AUDIT */
   .audit-section {
     padding: 80px 0;
@@ -827,20 +891,16 @@
     .audit-inner { grid-template-columns: 1fr; padding: 40px 28px; gap: 36px; }
   }
 
-  /* CONSULTING */
+  /* CONSULTING ARC */
   .consulting-section {
     padding: 80px 0;
     position: relative;
     z-index: 1;
   }
-  .consulting-inner {
-    background: linear-gradient(135deg, rgba(204,68,221,0.06) 0%, rgba(0,212,255,0.03) 100%);
-    border: 1px solid rgba(204,68,221,0.2);
-    border-radius: 20px;
-    padding: 64px 60px;
+  .consulting-top {
     text-align: center;
-    max-width: 820px;
-    margin: 0 auto;
+    max-width: 680px;
+    margin: 0 auto 56px;
   }
   .consulting-eyebrow {
     font-family: 'Orbitron', monospace;
@@ -853,9 +913,9 @@
   }
   .consulting-headline {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: clamp(24px, 3vw, 40px);
     font-weight: 800;
-    line-height: 1.25;
+    line-height: 1.2;
     color: var(--white);
     margin-bottom: 16px;
   }
@@ -864,27 +924,64 @@
     font-size: 16px;
     color: var(--muted);
     line-height: 1.7;
-    max-width: 600px;
-    margin: 0 auto 36px;
   }
-  .consulting-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 36px;
+  .arc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
   }
-  .consulting-tag {
+  .arc-card {
+    background: linear-gradient(135deg, rgba(204,68,221,0.07) 0%, rgba(15,22,40,0.9) 100%);
+    border: 1px solid rgba(204,68,221,0.2);
+    border-radius: 16px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .arc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--magenta), transparent);
+  }
+  .arc-card:hover { border-color: rgba(204,68,221,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(204,68,221,0.1); }
+  .arc-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--magenta);
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .arc-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .arc-duration {
     font-family: 'Orbitron', monospace;
     font-size: 9px;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--magenta);
-    border: 1px solid rgba(204,68,221,0.3);
-    background: rgba(204,68,221,0.07);
-    padding: 7px 16px;
-    border-radius: 100px;
+    margin-bottom: 18px;
+    opacity: 0.7;
+  }
+  .arc-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .consulting-cta {
+    text-align: center;
   }
   .consulting-btn {
     display: inline-block;
@@ -896,13 +993,15 @@
     color: var(--white);
     background: transparent;
     border: 1px solid var(--magenta);
-    padding: 14px 36px;
+    padding: 16px 48px;
     text-decoration: none;
     clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
     transition: all 0.2s;
   }
   .consulting-btn:hover { background: var(--magenta); color: var(--navy); transform: translateY(-2px); }
-  @media (max-width: 768px) { .consulting-inner { padding: 40px 28px; } }
+  @media (max-width: 768px) {
+    .arc-grid { grid-template-columns: 1fr; }
+  }
 
 </style>
 </head>
@@ -928,12 +1027,12 @@
 <section class="hero">
   <div class="hero-wordmark">Offstage <span class="accent-cyan">Consultants</span></div>
   <div class="hero-sub-wordmark">Business &amp; Personal Solutions</div>
-  <div class="hero-eyebrow">Productized Services</div>
+  <div class="hero-eyebrow">AI-Powered Consulting</div>
   <h1 class="hero-headline">
-    Fixed scope. Built for you.<br>
-    <span class="accent-cyan">Delivered.</span>
+    Ready today for a<br>
+    <span class="accent-cyan">better business tomorrow.</span>
   </h1>
-  <p class="hero-sub">Done-for-you solutions for businesses that want results, not conversations. Clear scope, clear price, clear timeline — every time.</p>
+  <p class="hero-sub">Business consulting with AI as the engine. We design, build, and deploy the systems your business runs on — then step back and let them work.</p>
   <div class="promo-banner">
     <div class="promo-text">
       <strong>Every service</strong> <span>includes a monthly maintenance retainer</span>
@@ -948,25 +1047,65 @@
 <section class="about-section" id="about">
   <div class="container">
     <div class="about-top fade-in">
-      <div class="about-eyebrow">Who We Are</div>
-      <h2 class="about-headline">We build the systems<br>your business <span class="accent">runs on.</span></h2>
-      <p class="about-desc">Offstage Consultants is a business and personal consulting firm that designs, builds, and deploys done-for-you technology, automation, and AI systems. We work with entrepreneurs, service providers, and growing teams who need things built right — quickly, cleanly, and without requiring you to become a technical expert in the process.<br><br>The name says everything: the best systems work offstage. Behind the scenes, invisible to your clients, and completely out of your way. You focus on delivering your work. We build everything that makes that possible.</p>
+      <div class="about-eyebrow">How We Work</div>
+      <h2 class="about-headline">Three pillars.<br>Every engagement. <span class="accent">Every client.</span></h2>
+      <p class="about-desc">Every engagement we run is diagnosed across three pillars — the areas where businesses gain leverage, lose time, and leave money on the table. We identify your highest-constraint pillar first, then build from there.</p>
     </div>
     <div class="about-pillars">
       <div class="pillar fade-in">
         <span class="pillar-icon">01</span>
-        <div class="pillar-title">Done For You</div>
-        <p class="pillar-body">We scope it, build it, test it, and hand it off. You get <strong>a working system</strong> — not a course on how to build one yourself. No DIY, no hand-holding required from your end.</p>
+        <div class="pillar-title">Conversational Intelligence</div>
+        <p class="pillar-body"><strong>Voice, messaging, content, and communication systems.</strong> How your business researches, decides, synthesizes, and speaks — built to operate at scale without your constant input.</p>
       </div>
       <div class="pillar fade-in">
         <span class="pillar-icon">02</span>
-        <div class="pillar-title">Fixed Scope. Fixed Price.</div>
-        <p class="pillar-body">Every engagement has a <strong>clear deliverable and a clear price</strong> before we start. No open-ended retainers. No scope creep. No surprises. You know exactly what you're getting and when you're getting it.</p>
+        <div class="pillar-title">Agentic Execution</div>
+        <p class="pillar-body"><strong>Agents, automations, and workflow builds.</strong> The revenue sitting un-built in your backlog. The tasks that only happen when you personally remember. We build the machinery that ships for you.</p>
       </div>
       <div class="pillar fade-in">
         <span class="pillar-icon">03</span>
-        <div class="pillar-title">Built to Run Without You</div>
-        <p class="pillar-body">Every system we build is designed to <strong>operate independently</strong>. It should run whether you're in a meeting, on vacation, or asleep. You shouldn't need to babysit what we build — and you won't.</p>
+        <div class="pillar-title">Operational Systems</div>
+        <p class="pillar-body"><strong>Websites, apps, tools, SOPs, and infrastructure.</strong> The recurring operations that should run without founder attention. What breaks when you're unavailable is exactly what we fix.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FIVE OUTCOMES -->
+<section class="outcomes-section" id="outcomes">
+  <div class="container">
+    <div class="outcomes-top fade-in">
+      <div class="about-eyebrow" style="justify-content:center;">What You Walk Away With</div>
+      <h2 class="about-headline" style="margin-bottom:12px;">Five outcomes.<br><span class="accent">Every engagement.</span></h2>
+      <p class="about-desc">Regardless of which service you chose, you leave with these five things — no exceptions.</p>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card fade-in">
+        <div class="outcome-num">01</div>
+        <div class="outcome-title">Clarity of Workflow</div>
+        <div class="outcome-desc">You know exactly how your business operates and where leverage lives — documented, mapped, and clear.</div>
+      </div>
+      <div class="outcome-card fade-in">
+        <div class="outcome-num">02</div>
+        <div class="outcome-title">Aligned Vision</div>
+        <div class="outcome-desc">The build reflects your actual goals. Not an assumed version of them, not what's easy to build — yours.</div>
+      </div>
+      <div class="outcome-card fade-in">
+        <div class="outcome-num">03</div>
+        <div class="outcome-title">Maximized Systems</div>
+        <div class="outcome-desc">Every tool and process is working as hard as it should. No slack, no manual workarounds, no wasted infrastructure.</div>
+      </div>
+      <div class="outcome-card fade-in">
+        <div class="outcome-num">04</div>
+        <div class="outcome-title">Confident ROI</div>
+        <div class="outcome-desc">You know what you invested, what you got, and what's coming back. No ambiguity about whether it was worth it.</div>
+      </div>
+      <div class="outcome-card fade-in">
+        <div class="outcome-num">05</div>
+        <div class="outcome-title">Informed Intelligence</div>
+        <div class="outcome-desc">You have the data, reports, and context to make better decisions — going forward, not just about this engagement.</div>
       </div>
     </div>
   </div>
@@ -995,8 +1134,8 @@
         <li>
           <span class="check">✓</span>
           <div>
-            <div>Current ops review</div>
-            <div class="check-label">We map what's working, what's leaking, and what's missing entirely</div>
+            <div>Three Pillars diagnosis</div>
+            <div class="check-label">We identify your highest-constraint pillar and what to build first</div>
           </div>
         </li>
         <li>
@@ -1513,23 +1652,36 @@
 
 <div class="divider"></div>
 
-
-<!-- CONSULTING -->
+<!-- CONSULTING ARC -->
 <section class="consulting-section" id="consulting">
   <div class="container">
-    <div class="consulting-inner fade-in">
-      <div class="consulting-eyebrow">Beyond the Catalog</div>
-      <h2 class="consulting-headline">Need something<br>built <span class="accent">to spec?</span></h2>
-      <p class="consulting-desc">Not every problem fits a package. If your situation is complex, multi-system, or genuinely custom — we do that too. Bespoke consulting engagements, scoped around your business specifically.</p>
-      <div class="consulting-tags">
-        <span class="consulting-tag">Business Strategy</span>
-        <span class="consulting-tag">AI Implementation</span>
-        <span class="consulting-tag">Systems Design</span>
-        <span class="consulting-tag">Operations Overhaul</span>
-        <span class="consulting-tag">Custom Builds</span>
-        <span class="consulting-tag">Team Training</span>
+    <div class="consulting-top fade-in">
+      <div class="consulting-eyebrow">The Consultation Arc</div>
+      <h2 class="consulting-headline">Complex problems.<br><span class="accent">Bespoke engagements.</span></h2>
+      <p class="consulting-desc">Not every situation fits a productized package. When your problem is multi-system, layered, or genuinely custom — we do that too. Three ways to engage.</p>
+    </div>
+    <div class="arc-grid">
+      <div class="arc-card fade-in">
+        <div class="arc-num">Arc 01</div>
+        <div class="arc-name">Discovery &amp; Roadmap</div>
+        <div class="arc-duration">2–3 Weeks</div>
+        <p class="arc-body">Full audit of your business, systems, and constraints across all three pillars. You leave with a clear build plan, a prioritized roadmap, and the context to make confident decisions about what to build next.</p>
       </div>
-      <a href="https://offstageaiintake.netlify.app/" class="consulting-btn">Let's Talk →</a>
+      <div class="arc-card fade-in">
+        <div class="arc-num">Arc 02</div>
+        <div class="arc-name">Focused Build</div>
+        <div class="arc-duration">1–3 Weeks</div>
+        <p class="arc-body">A scoped custom build, designed around your specific situation. Fixed scope, fast delivery, no hourly billing. You bring the problem — we scope, build, and hand it off with documentation.</p>
+      </div>
+      <div class="arc-card fade-in">
+        <div class="arc-num">Arc 03</div>
+        <div class="arc-name">Operating Partnership</div>
+        <div class="arc-duration">Ongoing</div>
+        <p class="arc-body">Monthly retainer for founders who want an AI architect in their corner continuously. Strategy, builds, monitoring, and iteration — without the overhead of a full-time technical hire.</p>
+      </div>
+    </div>
+    <div class="consulting-cta">
+      <a href="https://offstageaiintake.netlify.app/" class="consulting-btn">Let’s Talk →</a>
     </div>
   </div>
 </section>
@@ -1542,7 +1694,7 @@
     <div class="cta-inner fade-in">
       <div class="hero-eyebrow" style="justify-content:center; opacity:1; animation:none; margin-bottom:20px;">Get Started</div>
       <h2 class="cta-headline">Ready to build<br>something that works?</h2>
-      <p class="cta-sub">30-minute discovery call. We'll map the right service for your situation, confirm scope, and get moving.</p>
+      <p class="cta-sub">30-minute discovery call. We’ll map the right service for your situation, confirm scope, and get moving.</p>
       <div class="cta-btn-group">
         <a href="https://offstageaiintake.netlify.app/" class="btn-primary">Book a Discovery Call</a>
         <a href="https://offstageaiintake.netlify.app/" class="btn-secondary">Send a Message</a>
