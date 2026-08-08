@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Kit + Findings Review — Offstage Consultants</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0A0E1A; --cyan:#00D4FF; --magenta:#CC44DD; --teal:#00E5CC;
+    --white:#F0F4FF; --muted:#6B7A9F; --card-bg:rgba(15,22,40,0.85);
+    --border:rgba(0,212,255,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--navy); color:var(--white); font-family:'DM Sans',sans-serif;
+    line-height:1.6; min-height:100vh; position:relative; overflow-x:hidden;
+  }
+  body::before {
+    content:''; position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,212,255,0.035) 1px,transparent 1px);
+    background-size:60px 60px; pointer-events:none; z-index:0;
+  }
+  .orb { position:fixed; border-radius:50%; filter:blur(120px); opacity:0.18; pointer-events:none; z-index:0;
+         width:600px; height:600px; background:var(--cyan); top:-250px; left:-200px; }
+  .container { max-width:760px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+  nav { padding:20px 32px; border-bottom:1px solid var(--border); position:relative; z-index:2; }
+  .nav-logo { font-family:'Orbitron',monospace; font-size:14px; font-weight:700;
+              letter-spacing:0.08em; text-transform:uppercase; color:var(--white); text-decoration:none; }
+  .nav-logo span { color:var(--cyan); }
+
+  .eyebrow { font-family:'Orbitron',monospace; font-size:11px; font-weight:600;
+             letter-spacing:0.18em; text-transform:uppercase; color:var(--teal); margin-bottom:18px; display:block; }
+  h1 { font-family:'Syne',sans-serif; font-size:clamp(30px,4.5vw,46px); font-weight:800;
+       line-height:1.1; letter-spacing:-0.02em; margin-bottom:20px; }
+  h2 { font-family:'Syne',sans-serif; font-size:24px; font-weight:700; margin-bottom:16px; }
+  p { color:var(--muted); font-size:17px; margin-bottom:16px; }
+  p.lead { font-size:19px; color:#A8B6D8; }
+  strong { color:var(--white); font-weight:600; }
+  em { color:#A8B6D8; }
+  header { padding:70px 0 46px; }
+  section { padding:38px 0; }
+  hr.rule { border:0; border-top:1px solid var(--border); }
+
+  .dl-card {
+    background:var(--card-bg); border:1px solid var(--border); border-radius:12px;
+    padding:30px; margin:28px 0; backdrop-filter:blur(10px);
+  }
+  .dl-card.accent { border-color:rgba(0,212,255,0.45); }
+  .step-tag {
+    font-family:'Orbitron',monospace; font-size:10px; font-weight:700; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--navy);
+    background:linear-gradient(135deg,var(--cyan),var(--teal));
+    padding:5px 12px; border-radius:3px; display:block; width:fit-content; margin-bottom:18px;
+  }
+  .dl-primary {
+    display:inline-block; font-family:'Orbitron',monospace; font-size:12px; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--navy);
+    background:linear-gradient(135deg,var(--cyan),var(--teal));
+    padding:17px 34px; border-radius:5px; text-decoration:none;
+    transition:transform 0.15s, box-shadow 0.2s;
+  }
+  .dl-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,212,255,0.28); }
+  .dl-ghost {
+    display:inline-block; font-family:'Orbitron',monospace; font-size:12px; font-weight:600;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan);
+    border:1px solid var(--cyan); padding:16px 32px; border-radius:5px;
+    text-decoration:none; transition:background 0.2s;
+  }
+  .dl-ghost:hover { background:rgba(0,212,255,0.09); }
+  .dl-list { list-style:none; margin-top:26px; }
+  .dl-list li { border-top:1px solid var(--border); padding:14px 0; display:flex;
+                justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+  .dl-list a { color:var(--cyan); text-decoration:none; font-size:16px; font-weight:500; }
+  .dl-list a:hover { text-decoration:underline; }
+  .dl-note { font-size:13px; color:var(--muted); }
+
+  ul.bring { list-style:none; margin:20px 0; }
+  ul.bring li { position:relative; padding-left:26px; margin-bottom:12px; color:var(--muted); font-size:16px; }
+  ul.bring li::before { content:'▸'; position:absolute; left:0; top:0; color:var(--cyan); }
+  ul.bring li strong { color:var(--white); }
+
+  .callout { border-left:3px solid var(--cyan); background:rgba(0,212,255,0.05);
+             padding:22px 26px; border-radius:0 8px 8px 0; margin:26px 0; }
+  .callout p:last-child { margin-bottom:0; }
+  code { font-family:'SF Mono',Menlo,monospace; font-size:13px;
+         background:rgba(0,212,255,0.09); color:var(--teal); padding:2px 7px; border-radius:3px; }
+  footer { padding:44px 0 64px; border-top:1px solid var(--border); margin-top:30px; }
+  footer p { font-size:14px; margin-bottom:8px; }
+  footer a { color:var(--cyan); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="orb"></div>
+
+<nav><a href="/" class="nav-logo">OFF<span>STAGE</span></a></nav>
+
+<header>
+  <div class="container">
+    <span class="eyebrow">Payment received</span>
+    <h1>Your kit, and your review.</h1>
+    <p class="lead">
+      Two steps. Download the kit and run the assessment first — then book the
+      call. The hour is worth far more with your scores already in hand.
+    </p>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- STEP 1 -->
+  <div class="dl-card">
+    <span class="step-tag">Step 1 — Download &amp; run it</span>
+    <a href="/kit/files/agent-governance-kit.zip" class="dl-primary" download>Download everything (.zip)</a>
+    <ul class="dl-list">
+      <li>
+        <a href="/kit/files/01-assessment.md" download>01 — The Assessment</a>
+        <span class="dl-note">22 controls · ~45 min</span>
+      </li>
+      <li>
+        <a href="/kit/files/02-conformance-spec.md" download>02 — The Conformance Spec</a>
+        <span class="dl-note">Reference</span>
+      </li>
+      <li>
+        <a href="/kit/files/README.md" download>README</a>
+        <span class="dl-note">Start here</span>
+      </li>
+    </ul>
+    <p class="dl-note" style="margin-top:20px; margin-bottom:0">
+      <strong>Bookmark this page</strong> — the link doesn't expire.
+    </p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="dl-card accent">
+    <span class="step-tag">Step 2 — Book your 60 minutes</span>
+    <p>
+      Send us your availability and a line about your stack. We'll confirm a time
+      <strong>within 5 business days</strong> of your purchase.
+    </p>
+    <!-- BOOKING: swap this href for a Cal.com / Calendly link when one exists.
+         Until then it routes to the live intake app, which captures stack + availability. -->
+    <a href="https://offstageaiintake.netlify.app/" class="dl-ghost">Book the review →</a>
+  </div>
+
+  <hr class="rule">
+
+  <section>
+    <h2>What to bring</h2>
+    <p>
+      The review is not a demo and not a sales call. It is an hour of pressure-testing.
+      Come with:
+    </p>
+    <ul class="bring">
+      <li><strong>Your completed scores</strong> — all 22, including the ones you guessed at.</li>
+      <li><strong>The controls you scored a 2 but aren't sure about.</strong> These are the
+          most valuable minutes of the call. Self-reports are generous; that is the
+          whole reason this session exists.</li>
+      <li><strong>Your rough architecture</strong> — where agents run, what they can reach,
+          what stores the audit trail. A napkin sketch is enough.</li>
+      <li><strong>The deadline driving this</strong>, if there is one. A security review, a
+          client launch, an audit. It changes what we tell you to fix first.</li>
+    </ul>
+
+    <div class="callout">
+      <p style="margin-bottom:0">
+        <strong>Run the assessment before the call.</strong> If you show up
+        without scores we will spend the hour doing what you could have done in
+        45 minutes on your own — and you'll get a generic answer instead of yours.
+      </p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>What you'll leave with</h2>
+    <ul class="bring">
+      <li>A <strong>corrected score</strong> — the 2s that are really 1s, named.</li>
+      <li>A <strong>remediation order specific to your architecture</strong>, not the
+          generic blast-radius list in the kit.</li>
+      <li>A straight answer on whether your current posture survives a customer's
+          security review, and what the honest claim is until it does.</li>
+    </ul>
+    <p style="margin-bottom:0">
+      If it turns out the gap is bigger than an hour can close, we'll say so and
+      point you at the <a href="/#audit" style="color:var(--cyan); text-decoration:none">AI Governance Audit</a>.
+      We won't spend the call selling it.
+    </p>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    <p><strong>Offstage Consultants</strong> — Agent Governance Starter Kit v1</p>
+    <p>Something wrong with your download or booking? Reply to your receipt.</p>
+    <p><a href="/">offstageai.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
